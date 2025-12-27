@@ -56,7 +56,7 @@ export default function Register() {
                         <span className="text-xl font-bold tracking-tight">LocalGems</span>
                     </Link>
                     <div>
-                        <h2 className="text-4xl font-bold mb-6">"To travel is to live."</h2>
+                        <h2 className="text-4xl font-bold mb-6">&quot;To travel is to live.&quot;</h2>
                         <p className="text-orange-100 text-lg">Start your journey as a local explorer today.</p>
                     </div>
                 </div>

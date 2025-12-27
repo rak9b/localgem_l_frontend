@@ -30,7 +30,7 @@ export const ChatBot: React.FC = () => {
             id: '1',
             text: "Hello! 👋 I'm your LocalGems assistant. I can help you find tours, become a guide, or answer questions about bookings. How can I help you today?",
             sender: 'bot',
-            timestamp: new Date()
+            timestamp: new Date('2025-01-01T00:00:00')
         }
     ]);
 

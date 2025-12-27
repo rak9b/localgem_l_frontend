@@ -30,9 +30,13 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -8 }}
-            className="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-rose-500/10 transition-all duration-300 border border-gray-100 dark:border-slate-800 flex flex-col h-full"
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-rose-500/10 transition-all duration-300 border border-gray-100 dark:border-slate-800 flex flex-col h-full transform-gpu"
         >
+            {/* Shimmer Effect */}
+            <div className="absolute inset-0 z-30 pointer-events-none bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+
             {/* Image Container */}
             <div className="relative h-64 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity" />

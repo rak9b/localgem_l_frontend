@@ -30,7 +30,14 @@ export default function Settings() {
     const [isSecurityLoading, setIsSecurityLoading] = useState(false);
 
     // Profile Form
-    const { register: registerProfile, handleSubmit: handleSubmitProfile } = useForm({
+    interface ProfileFormData {
+        name: string;
+        email: string;
+        bio: string;
+        location: string;
+    }
+
+    const { register: registerProfile, handleSubmit: handleSubmitProfile } = useForm<ProfileFormData>({
         defaultValues: {
             name: user?.name || '',
             email: user?.email || '',
@@ -42,19 +49,20 @@ export default function Settings() {
     // Security Form
     const { register: registerSecurity, handleSubmit: handleSubmitSecurity, reset: resetSecurity } = useForm();
 
-    const onProfileSubmit = async (data: any) => {
+    const onProfileSubmit = async (data: ProfileFormData) => {
         try {
             const res = await updateProfile(data).unwrap();
             if (res.success) {
                 dispatch(updateUser(res.data));
                 toast.success('Profile updated successfully!');
             }
-        } catch (error: any) {
-            toast.error(error?.data?.message || 'Failed to update profile');
+        } catch (error) {
+            const err = error as { data?: { message?: string } };
+            toast.error(err?.data?.message || 'Failed to update profile');
         }
     };
 
-    const onSecuritySubmit = async (data: any) => {
+    const onSecuritySubmit = async (data: any) => { // Keep any for now as it mock
         setIsSecurityLoading(true);
         setTimeout(() => {
             setIsSecurityLoading(false);

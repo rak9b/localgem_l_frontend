@@ -40,7 +40,7 @@ export default function Contact() {
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get in Touch</h1>
                     <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Have a question about a booking? Want to partner with us? We'd love to hear from you.
+                        Have a question about a booking? Want to partner with us? We&apos;d love to hear from you.
                     </p>
                 </div>
 

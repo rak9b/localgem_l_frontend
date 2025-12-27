@@ -33,6 +33,8 @@ export interface Tour {
     reviewCount: number;
     languages: string[];
     coordinates?: { x: number; y: number };
+    coordinateX?: number;
+    coordinateY?: number;
     reviews?: Review[];
     guide?: User;
 }
@@ -105,4 +107,16 @@ export interface Offer {
     minSpend?: number;
     image: string;
     color: string;
+}
+
+export interface ITourFilters {
+    page?: number;
+    limit?: number;
+    search?: string;
+    city?: string;
+    category?: string;
+    minPrice?: string;
+    maxPrice?: string;
+    sortBy?: string;
+    sortOrder?: 'asc' | 'desc';
 }

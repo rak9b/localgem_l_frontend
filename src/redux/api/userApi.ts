@@ -15,7 +15,16 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['User'],
         }),
-        getAdminStats: builder.query<any, void>({
+        getAdminStats: builder.query<{
+            success: boolean;
+            data: {
+                totalUsers: number;
+                totalTours: number;
+                totalBookings: number;
+                totalRevenue: number;
+                recentActivities: any[] // We'll keep any for now unless we have a specific Activity type
+            }
+        }, void>({
             query: () => '/users/admin/stats',
             providesTags: ['User'],
         }),

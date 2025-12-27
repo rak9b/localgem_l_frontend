@@ -41,23 +41,6 @@ export default function Login() {
         }
     };
 
-    const handleDemoLogin = (role: 'tourist' | 'guide' | 'admin') => {
-        const mockUser = {
-            id: 'mock-user-id',
-            email: `${role}@demo.com`,
-            name: `${role.charAt(0).toUpperCase() + role.slice(1)} User`,
-            role: role.toUpperCase() as any, // Type assertion for demo
-            avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-        };
-
-        // Dispatch mock login
-        dispatch(setUser({ user: mockUser, token: 'mock-jwt-token' }));
-
-        // Redirect to dashboard
-        router.push('/dashboard');
-    };
 
     return (
         <div className="min-h-screen flex bg-white dark:bg-slate-950">
@@ -73,7 +56,7 @@ export default function Login() {
                         <span className="text-xl font-bold tracking-tight">LocalGems</span>
                     </Link>
                     <div>
-                        <h2 className="text-4xl font-bold mb-6">"Travel is the only thing you buy that makes you richer."</h2>
+                        <h2 className="text-4xl font-bold mb-6">&quot;Travel is the only thing you buy that makes you richer.&quot;</h2>
                         <p className="text-rose-100 text-lg">Join a community of explorers and local experts.</p>
                     </div>
                 </div>
@@ -94,7 +77,7 @@ export default function Login() {
                     <div>
                         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Welcome back</h2>
                         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                            Don't have an account?{' '}
+                            Don&apos;t have an account?{' '}
                             <Link href="/register" className="font-medium text-rose-600 dark:text-rose-400 hover:text-rose-500">
                                 Sign up for free
                             </Link>
@@ -135,40 +118,12 @@ export default function Login() {
                                 <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 mr-2" />
                                 <div className="text-sm text-red-700 dark:text-red-300">
                                     {error}
-                                    <p className="mt-1 font-semibold text-xs">Try using the Demo Buttons below if your database is offline.</p>
                                 </div>
                             </div>
                         )}
 
-                        {/* Demo/Dev Mode Buttons */}
-                        <div className="grid grid-cols-3 gap-3">
-                            <button
-                                type="button"
-                                onClick={() => handleDemoLogin('tourist')}
-                                className="flex flex-col items-center justify-center p-3 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 border border-blue-200 dark:border-blue-800 rounded-xl transition-colors text-xs font-medium text-blue-700 dark:text-blue-300"
-                            >
-                                <span className="font-bold mb-1">Tourist</span>
-                                Demo
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => handleDemoLogin('guide')}
-                                className="flex flex-col items-center justify-center p-3 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 border border-green-200 dark:border-green-800 rounded-xl transition-colors text-xs font-medium text-green-700 dark:text-green-300"
-                            >
-                                <span className="font-bold mb-1">Guide</span>
-                                Demo
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => handleDemoLogin('admin')}
-                                className="flex flex-col items-center justify-center p-3 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 border border-purple-200 dark:border-purple-800 rounded-xl transition-colors text-xs font-medium text-purple-700 dark:text-purple-300"
-                            >
-                                <span className="font-bold mb-1">Admin</span>
-                                Demo
-                            </button>
-                        </div>
                         <div className="text-center">
-                            <span className="text-xs text-gray-400 uppercase tracking-widest px-2 bg-white dark:bg-gray-950 relative z-10">OR LOGIN WITH EMAIL</span>
+                            <span className="text-xs text-gray-400 uppercase tracking-widest px-2 bg-white dark:bg-gray-950 relative z-10">LOGIN WITH EMAIL</span>
                             <div className="border-b border-gray-200 dark:border-gray-800 -mt-2"></div>
                         </div>
 

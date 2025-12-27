@@ -4,10 +4,11 @@ import { Input } from '@/components/ui/Input';
 import { CATEGORIES } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
+import { ITourFilters } from '@/types';
 
 interface ExploreFiltersProps {
     className?: string;
-    filters: any;
+    filters: ITourFilters;
     setFilters: (filters: any) => void;
     cities?: string[];
 }
@@ -15,11 +16,11 @@ interface ExploreFiltersProps {
 export const ExploreFilters = ({ className, filters, setFilters, cities = [] }: ExploreFiltersProps) => {
 
     const handleCategoryChange = (cat: string) => {
-        setFilters((prev: any) => ({ ...prev, category: prev.category === cat ? '' : cat, page: 1 }));
+        setFilters((prev: ITourFilters) => ({ ...prev, category: prev.category === cat ? '' : cat, page: 1 }));
     };
 
     const handleCityChange = (city: string) => {
-        setFilters((prev: any) => ({ ...prev, city: prev.city === city ? '' : city, page: 1 }));
+        setFilters((prev: ITourFilters) => ({ ...prev, city: prev.city === city ? '' : city, page: 1 }));
     };
 
     const resetFilters = () => {
@@ -55,7 +56,7 @@ export const ExploreFilters = ({ className, filters, setFilters, cities = [] }: 
                             placeholder="Search tours..."
                             className="pl-9 h-10 text-sm"
                             value={filters.search || ''}
-                            onChange={(e) => setFilters((prev: any) => ({ ...prev, search: e.target.value, page: 1 }))}
+                            onChange={(e) => setFilters((prev: ITourFilters) => ({ ...prev, search: e.target.value, page: 1 }))}
                         />
                     </div>
                 </div>
@@ -69,7 +70,7 @@ export const ExploreFilters = ({ className, filters, setFilters, cities = [] }: 
                             type="number"
                             className="h-9 text-sm"
                             value={filters.minPrice || ''}
-                            onChange={(e) => setFilters((prev: any) => ({ ...prev, minPrice: e.target.value, page: 1 }))}
+                            onChange={(e) => setFilters((prev: ITourFilters) => ({ ...prev, minPrice: e.target.value, page: 1 }))}
                         />
                         <span className="text-gray-400">-</span>
                         <Input
@@ -77,7 +78,7 @@ export const ExploreFilters = ({ className, filters, setFilters, cities = [] }: 
                             type="number"
                             className="h-9 text-sm"
                             value={filters.maxPrice || ''}
-                            onChange={(e) => setFilters((prev: any) => ({ ...prev, maxPrice: e.target.value, page: 1 }))}
+                            onChange={(e) => setFilters((prev: ITourFilters) => ({ ...prev, maxPrice: e.target.value, page: 1 }))}
                         />
                     </div>
                 </div>

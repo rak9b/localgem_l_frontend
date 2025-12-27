@@ -26,7 +26,7 @@ export default function About() {
                                 We believe travel should be <span className="text-rose-600">personal.</span>
                             </h1>
                             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                                LocalGems was born from a simple idea: the best travel experiences aren't found in guidebooks, but in the stories and secrets shared by the people who live there.
+                                LocalGems was born from a simple idea: the best travel experiences aren&apos;t found in guidebooks, but in the stories and secrets shared by the people who live there.
                             </p>
                             <div className="flex gap-4">
                                 <Link href="/explore">
@@ -99,7 +99,7 @@ export default function About() {
                 <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                     <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Mission</h2>
                     <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light">
-                        "To democratize travel by connecting curious explorers with passionate locals, fostering cultural understanding and creating economic opportunities in communities worldwide."
+                        &quot;To democratize travel by connecting curious explorers with passionate locals, fostering cultural understanding and creating economic opportunities in communities worldwide.&quot;
                     </p>
                 </div>
             </section>

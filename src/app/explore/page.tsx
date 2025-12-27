@@ -14,10 +14,11 @@ import { Badge } from '@/components/ui/Badge';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { useGetToursQuery } from '@/redux/api/tourApi';
 import { cn } from '@/lib/utils';
+import { ITourFilters } from '@/types';
 
 export default function Explore() {
     // Filter State
-    const [filters, setFilters] = useState({
+    const [filters, setFilters] = useState<ITourFilters>({
         page: 1,
         limit: 9,
         search: '',
@@ -60,7 +61,7 @@ export default function Explore() {
     const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
         let sortBy = 'rating';
-        let sortOrder = 'desc';
+        let sortOrder: 'asc' | 'desc' = 'desc';
 
         if (value === 'price-low') { sortBy = 'price'; sortOrder = 'asc'; }
         if (value === 'price-high') { sortBy = 'price'; sortOrder = 'desc'; }
@@ -178,7 +179,7 @@ export default function Explore() {
                                 <Button
                                     variant="outline"
                                     disabled={filters.page === 1}
-                                    onClick={() => setFilters(prev => ({ ...prev, page: prev.page - 1 }))}
+                                    onClick={() => setFilters((prev: ITourFilters) => ({ ...prev, page: (prev.page || 1) - 1 }))}
                                 >
                                     Previous
                                 </Button>
@@ -187,8 +188,8 @@ export default function Explore() {
                                 </span>
                                 <Button
                                     variant="outline"
-                                    disabled={filters.page >= meta.totalPage}
-                                    onClick={() => setFilters(prev => ({ ...prev, page: prev.page + 1 }))}
+                                    disabled={(filters.page || 1) >= meta.totalPage}
+                                    onClick={() => setFilters((prev: ITourFilters) => ({ ...prev, page: (prev.page || 1) + 1 }))}
                                 >
                                     Next
                                 </Button>

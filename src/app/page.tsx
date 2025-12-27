@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Star, Users } from 'lucide-react';
+import { Shield, Star, Users, ArrowLeft, MapPin } from 'lucide-react';
 import { StoryRail } from '@/components/home/StoryRail';
 import { Hero } from '@/components/home/Hero';
 import { FeaturedTours } from '@/components/home/FeaturedTours';
@@ -31,6 +31,8 @@ export default function Home() {
 
       {/* 3. Top Rated Tours */}
       <FeaturedTours />
+
+
 
       {/* 4. Live Stats - Trust Section */}
       <section className="py-20 bg-gray-50 dark:bg-slate-900/50">
@@ -106,7 +108,7 @@ export default function Home() {
             <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">Turn Your Passion Into a <span className="text-rose-500">Local Business</span></h2>
-                <p className="text-slate-300 text-lg mb-12 max-w-lg">Host travelers from around the globe, share your city\'s secrets, and earn more doing what you love.</p>
+                <p className="text-slate-300 text-lg mb-12 max-w-lg">Host travelers from around the globe, share your city&apos;s secrets, and earn more doing what you love.</p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button className="px-8 py-4 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-bold text-lg transition-all active:scale-95 shadow-xl shadow-rose-900/20">
                     Apply to Guide

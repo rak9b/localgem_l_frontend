@@ -45,8 +45,13 @@ export default function MessagesPage() {
     ];
 
     // Socket.io connection
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     useEffect(() => {
-        const newSocket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000', {
+        const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000';
+        const newSocket = io(socketUrl, {
             transports: ['websocket', 'polling']
         });
 
@@ -75,10 +80,6 @@ export default function MessagesPage() {
             newSocket.close();
         };
     }, [user, selectedChat]);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
 
     const sendMessage = (e: React.FormEvent) => {
         e.preventDefault();

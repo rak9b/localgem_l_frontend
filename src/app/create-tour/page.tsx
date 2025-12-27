@@ -45,8 +45,9 @@ export default function CreateTour() {
                 toast.success("Tour Listed Successfully!");
                 router.push(`/tours/${res.data.id}`);
             }
-        } catch (error: any) {
-            toast.error(error?.data?.message || "Failed to list tour");
+        } catch (error) {
+            const err = error as { data?: { message?: string } };
+            toast.error(err?.data?.message || "Failed to list tour");
         }
     };
 
@@ -63,7 +64,7 @@ export default function CreateTour() {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800 p-8"
                 >
-                    <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-8">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
 
                         {/* Image Upload Placeholder */}
                         <div className="border-2 border-dashed border-gray-200 dark:border-slate-700 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group">

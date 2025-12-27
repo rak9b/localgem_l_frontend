@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen font-sans antialiased bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100 transition-colors duration-300 relative">
+      <body suppressHydrationWarning className="flex flex-col min-h-screen font-sans antialiased bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100 transition-colors duration-300 relative">
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />

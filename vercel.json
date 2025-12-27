@@ -9,6 +9,7 @@
     "NEXT_PUBLIC_API_URL": "@api-url",
     "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@stripe-key",
     "NEXT_PUBLIC_APP_NAME": "LocalGems",
-    "NEXT_PUBLIC_ENABLE_DEMO_MODE": "true"
+    "NEXT_PUBLIC_ENABLE_DEMO_MODE": "true",
+    "NEXT_PUBLIC_SOCKET_URL": "@socket-url"
   }
 }

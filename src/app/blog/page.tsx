@@ -32,7 +32,7 @@ export default function Blog() {
                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-8 md:p-12">
-                        <Badge className="w-fit mb-4 bg-rose-600 text-white border-none">Editor's Pick</Badge>
+                        <Badge className="w-fit mb-4 bg-rose-600 text-white border-none">Editor&apos;s Pick</Badge>
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">The Ultimate Guide to Sustainable Travel in 2025</h2>
                         <p className="text-gray-200 text-lg mb-6 max-w-2xl line-clamp-2">
                             How to explore the world responsibly, support local communities, and leave a positive impact on the places you visit.

@@ -81,10 +81,11 @@ export const Hero = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl p-3 shadow-2xl shadow-black/20 border border-white/20 backdrop-blur-xl flex flex-col md:flex-row gap-3"
+                    transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
+                    className="w-full max-w-4xl bg-white/70 dark:bg-slate-900/70 rounded-3xl p-3 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] border border-white/40 dark:border-slate-800/40 backdrop-blur-2xl flex flex-col md:flex-row gap-3 relative group"
                 >
-                    <div className="flex-1 flex items-center bg-gray-50 dark:bg-slate-800 rounded-2xl px-5 py-4 transition-colors focus-within:bg-white dark:focus-within:bg-slate-900 focus-within:ring-2 focus-within:ring-rose-500/20">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-rose-500 to-orange-500 rounded-3xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+                    <div className="relative flex-1 flex items-center bg-gray-50/50 dark:bg-slate-800/50 rounded-2xl px-5 py-4 transition-all duration-300 focus-within:bg-white dark:focus-within:bg-slate-900 focus-within:ring-2 focus-within:ring-rose-500/20">
                         <Search className="text-gray-400 w-5 h-5 mr-3" />
                         <input
                             type="text"
@@ -96,7 +97,7 @@ export const Hero = () => {
                         />
                     </div>
 
-                    <div className="flex-1 md:max-w-[200px] flex items-center bg-gray-50 dark:bg-slate-800 rounded-2xl px-5 py-4 transition-colors focus-within:bg-white dark:focus-within:bg-slate-900 focus-within:ring-2 focus-within:ring-rose-500/20">
+                    <div className="relative flex-1 md:max-w-[200px] flex items-center bg-gray-50/50 dark:bg-slate-800/50 rounded-2xl px-5 py-4 transition-all duration-300 focus-within:bg-white dark:focus-within:bg-slate-900 focus-within:ring-2 focus-within:ring-rose-500/20">
                         <Globe className="text-gray-400 w-5 h-5 mr-3" />
                         <select
                             value={category}
@@ -113,7 +114,7 @@ export const Hero = () => {
                     <Button
                         size="lg"
                         onClick={handleSearch}
-                        className="w-full md:w-auto py-4 px-8 rounded-2xl text-lg shadow-lg shadow-rose-600/20 bg-rose-600 hover:bg-rose-700 text-white border-none min-w-[140px]"
+                        className="relative w-full md:w-auto py-4 px-8 rounded-2xl text-lg shadow-lg shadow-rose-600/20 bg-rose-600 hover:bg-rose-700 text-white border-none min-w-[140px] transition-transform active:scale-95"
                     >
                         Search
                     </Button>
@@ -122,15 +123,15 @@ export const Hero = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                    className="mt-12 flex gap-8 text-white/80 text-sm font-medium"
+                    transition={{ duration: 1, delay: 1 }}
+                    className="mt-12 flex flex-wrap justify-center gap-8 text-white/80 text-sm font-medium"
                 >
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                    <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+                        <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
                         100+ Active Tours Today
                     </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                    <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+                        <div className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.5)]"></div>
                         Verified Local Guides
                     </div>
                 </motion.div>

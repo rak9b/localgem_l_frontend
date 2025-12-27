@@ -10,28 +10,28 @@ export const tourApi = baseApi.injectEndpoints({
                 params: params || {},
             }),
             providesTags: ['Tour'],
-            transformResponse: (response: { success: boolean; data: any[]; meta?: any }) => ({
+            transformResponse: (response: { success: boolean; data: (Tour & { guide?: { name: string; avatar?: string }; reviews?: any[] })[]; meta?: any }) => ({
                 ...response,
                 data: response.data.map(tour => ({
                     ...tour,
-                    guideName: tour.guide?.name || 'Local Guide',
-                    guideAvatar: tour.guide?.avatar || undefined,
-                    reviewCount: tour.reviews?.length || 0,
-                    coordinates: tour.coordinateX && tour.coordinateY ? { x: tour.coordinateX, y: tour.coordinateY } : undefined
+                    guideName: tour.guideName || tour.guide?.name || 'Local Guide',
+                    guideAvatar: tour.guideAvatar || tour.guide?.avatar || undefined,
+                    reviewCount: tour.reviewCount || tour.reviews?.length || 0,
+                    coordinates: tour.coordinates || (tour.coordinateX && tour.coordinateY ? { x: tour.coordinateX, y: tour.coordinateY } : undefined)
                 }))
             })
         }),
         getSingleTour: builder.query<{ success: boolean; data: Tour }, string>({
             query: (id) => `/tours/${id}`,
             providesTags: (result, error, id) => [{ type: 'Tour', id }],
-            transformResponse: (response: { success: boolean; data: any }) => ({
+            transformResponse: (response: { success: boolean; data: Tour & { guide?: { name: string; avatar?: string }; reviews?: any[] } }) => ({
                 ...response,
                 data: {
                     ...response.data,
-                    guideName: response.data.guide?.name || 'Local Guide',
-                    guideAvatar: response.data.guide?.avatar || undefined,
-                    reviewCount: response.data.reviews?.length || 0,
-                    coordinates: response.data.coordinateX && response.data.coordinateY ? { x: response.data.coordinateX, y: response.data.coordinateY } : undefined
+                    guideName: response.data.guideName || response.data.guide?.name || 'Local Guide',
+                    guideAvatar: response.data.guideAvatar || response.data.guide?.avatar || undefined,
+                    reviewCount: response.data.reviewCount || response.data.reviews?.length || 0,
+                    coordinates: response.data.coordinates || (response.data.coordinateX && response.data.coordinateY ? { x: response.data.coordinateX, y: response.data.coordinateY } : undefined)
                 }
             })
         }),

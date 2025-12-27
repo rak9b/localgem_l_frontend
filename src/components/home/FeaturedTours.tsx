@@ -23,12 +23,16 @@ const itemVariants = {
 };
 
 export const FeaturedTours = () => {
-    const { data: toursData, isLoading } = useGetToursQuery({ sortBy: 'reviewCount', sortOrder: 'desc', limit: 4 });
+    const { data: toursData, isLoading } = useGetToursQuery({ sortBy: 'reviewCount', sortOrder: 'desc', limit: 6 });
     const featuredTours = toursData?.data || [];
 
     return (
-        <section className="py-24 bg-gray-50 dark:bg-slate-900/50 relative">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 bg-gray-50 dark:bg-slate-900/50 relative overflow-hidden">
+            {/* Background Blobs */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-rose-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-orange-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Curated Experiences</h2>
@@ -45,7 +49,7 @@ export const FeaturedTours = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     {isLoading ? (
                         Array(4).fill(0).map((_, i) => (

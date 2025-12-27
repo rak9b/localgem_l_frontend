@@ -10,11 +10,10 @@ import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import { ToursMap } from '@/components/tours/ToursMap';
 import { TourCard } from '@/components/tours/TourCard';
-import { useGetToursQuery } from '@/redux/api/tourApi';
+import { useGetToursQuery, useGetSingleTourQuery } from '@/redux/api/tourApi';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import PaymentModal from '@/components/booking/PaymentModal';
-import { useGetSingleTourQuery } from '@/redux/api/tourApi';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { addToWishlist, removeFromWishlist } from '@/redux/features/wishlist/wishlistSlice';
@@ -95,7 +94,7 @@ export default function TourDetails() {
                 <div className="text-center p-8 bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-gray-100 dark:border-slate-800">
                     <MapPin className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Tour not found</h2>
-                    <p className="text-gray-500 dark:text-gray-400 mb-6">The tour you're looking for might have been moved or doesn't exist.</p>
+                    <p className="text-gray-500 dark:text-gray-400 mb-6">The tour you&apos;re looking for might have been moved or doesn&apos;t exist.</p>
                     <Link href="/explore">
                         <Button className="bg-rose-600 hover:bg-rose-700">Back to Explore</Button>
                     </Link>
@@ -197,7 +196,7 @@ export default function TourDetails() {
                             </div>
 
                             <div className="mt-8 pt-8 border-t border-gray-100 dark:border-slate-800">
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">What's included</h3>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">What&apos;s included</h3>
                                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {['Local Expert Guide', 'Insider Tips', 'Small Group', 'Flexible Cancellation'].map((item, i) => (
                                         <li key={i} className="flex items-center text-gray-600 dark:text-gray-400">
@@ -241,7 +240,7 @@ export default function TourDetails() {
                                     </Badge>
                                 </div>
                                 <p className="text-gray-600 dark:text-gray-400 mb-4 italic">
-                                    "I love sharing my city's hidden gems with travelers from around the world."
+                                    &quot;I love sharing my city&apos;s hidden gems with travelers from around the world.&quot;
                                 </p>
                                 <Button variant="outline" size="sm" className="hover:bg-gray-100 dark:hover:bg-slate-800">Contact Guide</Button>
                             </div>
@@ -398,14 +397,8 @@ export default function TourDetails() {
 
 // Sub-component for Similar Tours to handle its own data fetching
 const SimilarTours = ({ city, currentTourId }: { city: string, currentTourId: string }) => {
-    // Import hook here to avoid circular dependency issues if placed at top level with conditional logic
-    const { useGetToursQuery } = require('@/redux/api/tourApi');
     const { data } = useGetToursQuery({ city, limit: 4 });
     const similarTours = data?.data?.filter((t: any) => t.id !== currentTourId).slice(0, 3) || [];
-
-    // Import TourCard dynamically or use the one from props/context if needed
-    // For simplicity, we assume TourCard is available in scope or we import it again
-    const { TourCard } = require('@/components/tours/TourCard');
 
     if (similarTours.length === 0) return null;
 

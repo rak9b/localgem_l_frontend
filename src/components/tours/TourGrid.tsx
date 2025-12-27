@@ -5,8 +5,10 @@ import { ToursMap } from './ToursMap';
 import { Loader2, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
+import { Tour } from '@/types';
+
 interface TourGridProps {
-    tours: any[];
+    tours: Tour[];
     isLoading: boolean;
     isError: boolean;
     viewMode: 'list' | 'map';
