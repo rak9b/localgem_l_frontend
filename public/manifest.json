@@ -1,0 +1,55 @@
+{
+  "name": "LocalGems - Discover Local Experiences",
+  "short_name": "LocalGems",
+  "description": "Connect with local guides and discover authentic travel experiences worldwide",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#e11d48",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["travel", "lifestyle", "social"],
+  "shortcuts": [
+    {
+      "name": "Explore Tours",
+      "short_name": "Explore",
+      "description": "Browse available tours",
+      "url": "/explore",
+      "icons": [{ "src": "/icon-explore.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "My Trips",
+      "short_name": "Trips",
+      "description": "View your bookings",
+      "url": "/dashboard/tourist",
+      "icons": [{ "src": "/icon-trips.png", "sizes": "96x96" }]
+    }
+  ]
+}
