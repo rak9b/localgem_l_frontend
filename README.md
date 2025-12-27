@@ -74,7 +74,43 @@ LocalGems is a role-based web application accessible via desktop, tablet, and mo
 ## 4. System Architecture
 
 ### High-Level Architecture
-LocalGems follows a **Client-Server Architecture**. The Next.js frontend serves as the presentation layer, communicating with the Express.js backend via a RESTful API. The backend handles business logic and interacts with the PostgreSQL database.
+LocalGems follows a **Client-Server Architecture**. The Next.js frontend serves as the presentation layer, communicating with the Express.js backend via a RESTful API.
+
+#### 🔐 Authentication Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant DB
+    User->>Frontend: Enter Credentials
+    Frontend->>Backend: POST /auth/login
+    Backend->>DB: Find User (email)
+    DB-->>Backend: User Data & Hash
+    Backend->>Backend: Bcrypt Verify
+    Backend-->>Frontend: AccessToken + RefreshToken (HttpOnly)
+    Frontend->>User: Set Session & Dashboard Redirect
+```
+
+#### 💳 Payment & Booking Flow
+```mermaid
+sequenceDiagram
+    participant Traveler
+    participant Frontend
+    participant Backend
+    participant Stripe
+    participant DB
+    Traveler->>Frontend: Select Tour & Dates
+    Frontend->>Backend: POST /payments/create-intent
+    Backend->>Stripe: Create PaymentIntent (amount)
+    Stripe-->>Backend: Client Secret
+    Backend-->>Frontend: Client Secret
+    Frontend->>Stripe: Confirm Payment (Stripe Elements)
+    Stripe-->>Frontend: Success (PaymentIntent ID)
+    Frontend->>Backend: POST /bookings (w/ PaymentIntentID)
+    Backend->>DB: Create Booking Record & Update Status
+    Backend-->>Frontend: Success Response (Order Details)
+```
 
 ### Data Flow
 1.  **User Action**: User submits a booking request.
@@ -170,13 +206,29 @@ LocalGems follows a **Client-Server Architecture**. The Next.js frontend serves 
 ## 12. Frontend Documentation
 
 ### Folder Structure
-```
+```bash
 src/
-├── app/          # Pages (App Router)
-├── components/   # Reusable UI (Atomic Design)
-├── redux/        # Global State (Auth, Cart)
-├── lib/          # Utils (DateFns, ClassName)
-└── styles/       # Tailwind Config
+├── app/                  # Next.js App Router (File-based routing)
+│   ├── (auth)/           # Authentication layouts & groups
+│   ├── dashboard/        # Role-based dashboards (Admin, Guide, Tourist)
+│   ├── explore/          # Search & Filtering page
+│   ├── tours/            # Tour details [id] dynamic routes
+│   └── messages/         # Socket.io chat interface
+├── components/           # UI Component Library
+│   ├── layout/           # Shared components (Navbar, Footer, Sidebar)
+│   ├── home/             # Homepage-specific components
+│   ├── tours/            # Tour cards, filters, and details widgets
+│   ├── chat/             # ChatBot and message components
+│   └── ui/               # Primary UI primitives (Buttons, Modals, Inputs)
+├── redux/                # Redux Toolkit State Management
+│   ├── api/              # RTK Query API slices (baseApi, tourApi, etc.)
+│   └── features/         # Slices for local state (Auth, Theme)
+├── context/              # React Context (Theme, Custom hooks)
+├── hooks/                # Custom React hooks (useAuth, useLocalStorage)
+├── lib/                  # Library utilities (Socket.client, CLSX)
+├── types/                # Global TypeScript interfaces & types
+├── data/                 # Static data & Mock fallbacks
+└── styles/               # Global CSS & Tailwind configuration
 ```
 
 ### State Management
