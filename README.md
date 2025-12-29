@@ -11,121 +11,195 @@
 
 **Production-grade, high-performance UI/UX for the ultimate tour discovery marketplace.**
 
-[Live Demo](https://localgem-l-frontend-bx4r.vercel.app/) • [Features](#-key-features) • [Tech Stack](#-technology-stack) • [Structure](#-project-structure)
+[Live Demo](https://localgem-l-frontend-bx4r.vercel.app/) • [Features](#2-features) • [Stack](#4-technology-stack) • [Setup](#5-installation--setup) • [Architecture](#3-architecture)
 
 </div>
 
 ---
 
-## 📖 **Overview**
+## 1. Project Overview
 
-LocalGems Frontend is a state-of-the-art **Next.js 14 application** featuring premium glassmorphism design, advanced Framer Motion animations, and robust state management via RTK Query. Designed for speed, accessibility, and visual excellence.
-
-### **🌟 Highlights**
-
-- ✨ **Elite UI/UX** with 3D scale and shimmer hover effects
-- 🌙 **Seamless Dark Mode** with zero-flicker transitions
-- ⚡ **Optimized Performance** with Next.js App Router & Image optimization
-- 🔐 **Secure RBAC** with Protected Routes and JWT session handling
-- 🧱 **Atomic Architecture** with reusable premium UI components
-- 📱 **Mobile First** responsive layout for all form factors
+LocalGems Frontend is a state-of-the-art **Next.js 14 application** designed to deliver a premium, seamless experience for travelers and local guides. It features ultra-modern glassmorphism, advanced animations, and a robust state management system to handle complex Marketplace interactions.
 
 ---
 
-## 🎯 **Key Features**
+## 2. Features
 
 ### 🏠 **Public Experience**
-- **Hero Section**: Immersive visuals with 3D depth.
-- **Curated Experiences**: Premium tour cards with shimmering hover effects.
-- **Explore Page**: Real-time search, filtering by city/category, and sorting.
-- **Membership Area**: Multi-tier subscription roadmap display.
+- **Dynamic Hero**: High-fidelity visuals with 3D scale effects.
+- **Advanced Explore**: Real-time filtering by city, category, and price range.
+- **Tour Details**: Interactive galleries and itinerary step-throughs.
+- **Multi-Currency**: Instant switching between global currencies (USD, EUR, etc).
 
-### 👤 **User Dashboards**
-- **Tourist**: My Trips, Wishlist, Virtual Passport, and Review system.
-- **Guide**: Earnings charts, Tour Management, and Booking requests.
-- **Admin**: Platform-wide stats, User management, and Moderation tools.
+### 🔐 **Authentication**
+- **JWT Session Handling**: Token storage with refresh logic.
+- **Protected Routes**: Custom guards for role-based navigation.
+- **Persistence**: Session state maintained via Redux Persist.
 
-### ⚙️ **Core Tech**
-- **Inter-service Auth**: JWT verification with custom payload handling.
-- **Payments**: Integrated Stripe Checkout for secure tour bookings.
-- **Real-time**: Socket.io integration for instant communication.
-
----
-
-## 🛠️ **Technology Stack**
-
-<table>
-<tr>
-<td>
-
-**Core**
-- ⚛️ React 19 / Next.js 14
-- ⚡ Vite 6.0
-- 📘 TypeScript 5.8
-
-</td>
-<td>
-
-**State Management**
-- 🔄 Redux Toolkit
-- 🌐 RTK Query
-- 💾 Redux Persist
-
-</td>
-<td>
-
-**Styling**
-- 🎨 Tailwind CSS v4
-- 🎭 Framer Motion
-- ✨ Glassmorphism
-
-</td>
-</tr>
-</table>
+### 👤 **Role Dashboards**
+- **Tourist**: Passport system, Wishlist, and simplified Booking management.
+- **Guide**: Visualized Earnings charts, Tour Listing editor, and Booking moderation.
+- **Admin**: Platform-wide user management and statistical overview.
 
 ---
 
-## 📂 **Project Structure**
+## 3. Architecture
 
-```bash
-src/
-├── app/                  # Next.js App Router
-│   ├── (auth)/           # Login/Register routes
-│   ├── dashboard/        # Role-based pages
-│   ├── explore/          # Search & Filtering
-│   ├── tours/            # Detail pages [id]
-│   └── messages/         # Socket chat
-├── components/           # UI Library
-│   ├── layout/           # Navbar, Sidebar, Footer
-│   ├── home/             # Homepage sections
-│   ├── tours/            # Cards & Filters
-│   └── ui/               # Base primitives
-├── redux/                # State Logic
-│   ├── api/              # RTK Query slices
-│   └── features/         # Local slices
-├── lib/                  # Utils & Config
-└── styles/               # Design Tokens
+### **Frontend Logic Flow**
+```mermaid
+graph LR
+    subgraph "State Layer"
+        Redux[Redux Store]
+        Persist[Redux Persist]
+        RTK[RTK Query Cache]
+    end
+    
+    subgraph "UI Layer"
+        Components[Atomic Components]
+        Pages[App Router Pages]
+        Animations[Framer Motion]
+    end
+    
+    subgraph "External"
+        API[Backend API]
+        Stripe[Stripe SDK]
+        Socket[Socket.io]
+    end
+    
+    Pages --> Components
+    Components --> Animations
+    Components --> Redux
+    Redux --> RTK
+    RTK --> API
+    NextApp["Next.js 14"] --> Pages
 ```
 
 ---
 
-## 🚀 **Quick Start**
+## 4. Technology Stack
 
+- **Core**: Next.js 14 (App Router)
+- **State**: Redux Toolkit & RTK Query
+- **Styling**: Tailwind CSS v4 (Glassmorphism tokens)
+- **Motion**: Framer Motion
+- **Validation**: Zod + React Hook Form
+- **Icons**: Lucide React
+
+---
+
+## 5. Installation & Setup
+
+### **Prerequisites**
+- Node.js 20+
+- `pnpm`, `npm` or `yarn`
+
+### **Setup**
 ```bash
-# Install dependencies
+# Install
 npm install
 
-# Setup .env
-# NEXT_PUBLIC_API_URL=https://your-api.com/api/v1
+# Environment
+# Copy .env.example -> .env
+# VITE_API_URL=https://your-api.com/api/v1
 
-# Run development
+# Run
 npm run dev
 ```
 
 ---
 
+## 6. Project Structure
+
+```bash
+src/
+├── app/          # File-based Routing
+├── components/   # UI Library (ui, home, layout, tours)
+├── redux/        # Global State & API Slices
+├── hooks/        # Custom React Hooks
+└── types/        # TypeScript Interfaces
+```
+
+---
+
+## 7. Authentication & Authorization
+
+- **Client Guard**: `ProtectedRoute` component intercepts restricted routes.
+- **Token**: Bearer token injected into every RTK Query header.
+- **Persistence**: Encrypted storage in `localStorage`.
+
+---
+
+## 8. API Documentation (Client)
+
+- **baseApi**: Centralized configuration for all server interactions.
+- **tourApi**: Hooks for discovery and listing management.
+- **authApi**: Methods for login, registration, and profile fetching.
+
+---
+
+## 9. Usage Instructions
+
+### **Running Locally**
+1. Ensure Backend is running.
+2. Run `npm run dev`.
+3. Visit `http://localhost:3000`.
+
+---
+
+## 10. Deployment Guide
+
+- **Platform**: Vercel.
+- **Build Command**: `npm run build`.
+- **Requirements**: Set `NEXT_PUBLIC_API_URL` in Vercel settings.
+
+---
+
+## 11. Development Guidelines
+
+- **Atomic Design**: Keep components small and reusable.
+- **Style Standard**: Use Tailwind utility classes; avoid custom CSS where possible.
+- **Testing**: Run `npm run lint` before committing.
+
+---
+
+## 12. Security Considerations
+
+- **XSS Protection**: React handles injection safety; sanitization for user input.
+- **Auth Tokens**: Rotated on regular intervals via refresh tokens.
+- **Env Hygiene**: Strictly Git-ignored `.env` files.
+
+---
+
+## 13. Contribution Guidelines
+
+1. Follow the [Root Contribution Guide](../README.md#13-contribution-guidelines).
+2. Ensure types are defined for all new properties.
+
+---
+
+## 14. License
+
+Licensed under **MIT**.
+
+---
+
+## 15. Roadmap
+
+- [ ] **Dark Mode optimization**: Full accessibility audit.
+- [ ] **PWA Integration**: Offline tour viewing capability.
+- [ ] **Internationalization**: Support for multiple languages.
+
+---
+
+## 16. Support & Contact
+
+- **Discord**: [Join Chat](#)
+- **Issues**: [FE Track](https://github.com/rak9b/localgem_l_frontend/issues)
+
+---
+
 <div align="center">
 
-**Built with ❤️ by rakib Team**
+**Built with ❤️ and Modern Tech by rakib Team**
 
 </div>
