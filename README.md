@@ -1,6 +1,6 @@
 # 🌍 LocalGems - Premium Tour Booking Platform
 
-<div align="center">
+<div>
 
 ![LocalGems Banner](https://img.shields.io/badge/LocalGems-Enterprise%20Edition-6366f1?style=for-the-badge&logo=tripadvisor&logoColor=white)
 
@@ -13,9 +13,14 @@
 
 **A production-grade, full-stack SaaS platform connecting global travelers with verified local tour guides.**
 
+![LocalGems Screenshot](https://i.ibb.co/397hXvCQ/Screenshot-2025-12-30-211451.png)
+
+[Frontend Live Demo](https://localgem-l-frontend-bx4r.vercel.app/) • [Backend Repository](https://github.com/rak9b/localgem_l_backend)
+
 [Live Demo](https://localgem-l-frontend-bx4r.vercel.app/) • [Features](#-2-features--functionality) • [Tech Stack](#-3-technology-stack) • [Quick Start](#-5-setup--installation) • [Architecture](#-7-system-architecture) • [API Reference](#-9-url--api-reference)
 
 </div>
+
 
 ---
 
