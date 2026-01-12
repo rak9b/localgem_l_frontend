@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
             "google/gemini-2.0-flash-001"
         ];
 
-        let lastError = null;
+        let lastError = "Unable to connect to AI service.";
         for (const model of models) {
             try {
                 console.log(`Attempting chat with model: ${model}`);
@@ -64,7 +64,13 @@ export async function POST(req: NextRequest) {
                     return NextResponse.json({ result: data.choices[0].message.content });
                 }
 
-                lastError = data.error?.message || `Status ${response.status}`;
+                // If specialized "User not found" error from API, or other specific failure
+                if (data.error?.message?.includes("User not found") || response.status === 401 || response.status === 403) {
+                    lastError = "AI Service Authentication Error. Please check API configuration.";
+                    console.error(`Auth error with model ${model}:`, data.error);
+                } else {
+                    lastError = data.error?.message || `Status ${response.status}`;
+                }
 
                 // If 429 or 404, continue to next model
                 if (response.status === 429 || response.status === 404) {
@@ -72,8 +78,10 @@ export async function POST(req: NextRequest) {
                     continue;
                 }
 
-                // For other errors, return immediately
-                return NextResponse.json({ error: lastError }, { status: response.status });
+                // For fatal errors (like auth), return early instead of cycling all models
+                if (response.status === 401 || response.status === 403) {
+                    return NextResponse.json({ error: lastError }, { status: response.status });
+                }
 
             } catch (err) {
                 console.error(`Error with model ${model}:`, err);
@@ -81,7 +89,10 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        return NextResponse.json({ error: `All models failed. Last error: ${lastError}` }, { status: 503 });
+        return NextResponse.json({
+            error: "Service Temporarily Unavailable",
+            details: lastError
+        }, { status: 503 });
     } catch (error: unknown) {
         console.error("Chat API Error:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

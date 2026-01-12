@@ -67,6 +67,7 @@ export default function MessagesPage() {
 
         newSocket.on('connect', () => {
             console.log('Connected to chat server');
+            setSocket(newSocket);
             if (user?.id) {
                 newSocket.emit('join', { userId: user.id });
             }
@@ -90,8 +91,7 @@ export default function MessagesPage() {
             });
         });
 
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setSocket(newSocket);
+        // setSocket(newSocket);
 
         return () => {
             newSocket.close();
