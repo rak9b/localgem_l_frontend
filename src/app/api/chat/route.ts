@@ -78,9 +78,10 @@ export async function POST(req: NextRequest) {
                     continue;
                 }
 
-                // For fatal errors (like auth), return early instead of cycling all models
+                // For fatal errors (like auth), break loop to trigger fallback
                 if (response.status === 401 || response.status === 403) {
-                    return NextResponse.json({ error: lastError }, { status: response.status });
+                    console.warn(`Auth error (401/403) detected for model ${model}. Breaking loop to use fallback.`);
+                    break;
                 }
 
             } catch (err) {
