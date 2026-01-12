@@ -4,7 +4,6 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, SlidersHorizontal, MapPin, List } from 'lucide-react';
 import { TourCard } from '@/components/tours/TourCard';
-import { ToursMap } from '@/components/tours/ToursMap';
 import { ExploreFilters } from '@/components/tours/ExploreFilters';
 import { TourGrid } from '@/components/tours/TourGrid';
 import { Button } from '@/components/ui/Button';
@@ -143,7 +142,7 @@ export default function Explore() {
                         <div>
                             <h4 className="font-semibold text-amber-900 dark:text-amber-200 text-sm">Demo Mode Active</h4>
                             <p className="text-sm text-amber-700 dark:text-amber-300/80">
-                                We couldn't connect to the live database, so we're showing you some sample tours instead.
+                                We couldn&apos;t connect to the live database, so we&apos;re showing you some sample tours instead.
                                 Features like filtering and sorting might be limited.
                             </p>
                         </div>
