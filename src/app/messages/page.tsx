@@ -156,6 +156,7 @@ export default function MessagesPage() {
                                         }`}
                                 >
                                     <div className="relative">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img src={chat.avatar} alt={chat.name} className="w-12 h-12 rounded-full" />
                                         {chat.status === 'online' && (
                                             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full" />
@@ -185,6 +186,7 @@ export default function MessagesPage() {
                             {/* Chat Header */}
                             <div className="p-4 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
                                 <div className="flex items-center gap-3">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={selectedChat.avatar} alt={selectedChat.name} className="w-10 h-10 rounded-full" />
                                     <div>
                                         <h3 className="font-bold text-gray-900 dark:text-white">{selectedChat.name}</h3>

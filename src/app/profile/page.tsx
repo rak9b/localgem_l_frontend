@@ -53,6 +53,7 @@ export default function ProfilePage() {
                     <div className="flex flex-col md:flex-row items-start md:items-end gap-6">
                         <div className="relative">
                             <div className="w-32 h-32 rounded-full border-4 border-white dark:border-slate-950 bg-gray-200 overflow-hidden shadow-xl">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={user?.avatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=256'}
                                     alt="Profile"
@@ -170,6 +171,7 @@ export default function ProfilePage() {
                                             placeholder="yourwebsite.com"
                                         />
                                     ) : (
+                                        // eslint-disable-next-line react/jsx-no-target-blank
                                         <a href={`https://${formData.website}`} target="_blank" rel="noopener noreferrer" className={"text-rose-600 hover:underline"}>
                                             {formData.website}
                                         </a>
