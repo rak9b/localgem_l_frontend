@@ -130,7 +130,9 @@ export default function Passport() {
                                 {/* Empty Slots */}
                                 {[1, 2, 3].map((_, i) => (
                                     <div key={i} className="aspect-square border-2 border-dashed border-gray-200 dark:border-slate-700 rounded-full flex items-center justify-center opacity-50">
-                                        <span className="text-xs text-gray-300 dark:text-slate-600 font-mono">EMPTY</span>
+                                        <p className="text-center text-gray-500 dark:text-gray-400 max-w-sm">
+                                            You haven&apos;t earned any rewards yet. Keep exploring to earn &quot;Gems&quot; and unlock exclusive perks!
+                                        </p>
                                     </div>
                                 ))}
                             </div>
@@ -169,7 +171,7 @@ export default function Passport() {
 
                     <div className="bg-gradient-to-r from-rose-500 to-orange-500 p-6 rounded-2xl shadow-lg text-white">
                         <h3 className="font-bold mb-2">Book your next trip!</h3>
-                        <p className="text-sm opacity-90 mb-4">You're only 1 stamp away from leveling up to "Globetrotter".</p>
+                        <p className="text-sm opacity-90 mb-4">You&apos;re only 1 stamp away from leveling up to &quot;Globetrotter&quot;.</p>
                         <Link href="/explore">
                             <Button size="sm" variant="secondary" className="bg-white text-rose-600 border-none hover:bg-gray-100">
                                 Explore Now

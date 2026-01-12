@@ -11,8 +11,8 @@ export default function DashboardLanding() {
             <div className="max-w-6xl w-full text-center">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Select Your Experience</h1>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed">
-                    Welcome to LocalGems! For this demo, we've enabled all role-based dashboards.
-                    Choose a persona to explore the distinct features we've built for each user type.
+                    Welcome to LocalGems! For this demo, we&apos;ve enabled all role-based dashboards.
+                    Choose a persona to explore the distinct features we&apos;ve built for each user type.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">

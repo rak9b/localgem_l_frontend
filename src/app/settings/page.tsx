@@ -62,6 +62,7 @@ export default function Settings() {
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onSecuritySubmit = async (data: any) => { // Keep any for now as it mock
         setIsSecurityLoading(true);
         setTimeout(() => {

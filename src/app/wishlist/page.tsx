@@ -37,7 +37,7 @@ export default function WishlistPage() {
                         </div>
                         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Your Wishlist is Empty</h2>
                         <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
-                            Start saving tours you'd like to experience. You can organize them into collections and share with friends!
+                            Start saving tours you&apos;d like to experience. You can organize them into collections and share with friends!
                         </p>
                         <Link href="/explore">
                             <Button className="bg-rose-600 hover:bg-rose-700">
@@ -57,10 +57,8 @@ export default function WishlistPage() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">My Wishlist</h1>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            {wishlist.length} saved {wishlist.length === 1 ? 'tour' : 'tours'}
-                        </p>
+                        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">My Wishlist</h1>
+                        <p className="text-gray-600 dark:text-gray-400">Your favorite experiences, all in one place. Don&apos;t let them slip away!</p>
                     </div>
                     <div className="flex gap-3">
                         <Button variant="outline" className="gap-2">

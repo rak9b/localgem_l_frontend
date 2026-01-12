@@ -3,6 +3,7 @@ import { Tour } from '@/types';
 
 export const tourApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         getTours: builder.query<{ success: boolean; data: Tour[]; meta?: { page: number; limit: number; total: number; totalPage: number } }, Record<string, any> | void>({
             query: (params) => ({
                 url: '/tours',
@@ -10,6 +11,7 @@ export const tourApi = baseApi.injectEndpoints({
                 params: params || {},
             }),
             providesTags: ['Tour'],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             transformResponse: (response: { success: boolean; data: (Tour & { guide?: { name: string; avatar?: string }; reviews?: any[] })[]; meta?: any }) => ({
                 ...response,
                 data: response.data.map(tour => ({
@@ -24,6 +26,7 @@ export const tourApi = baseApi.injectEndpoints({
         getSingleTour: builder.query<{ success: boolean; data: Tour }, string>({
             query: (id) => `/tours/${id}`,
             providesTags: (result, error, id) => [{ type: 'Tour', id }],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             transformResponse: (response: { success: boolean; data: Tour & { guide?: { name: string; avatar?: string }; reviews?: any[] } }) => ({
                 ...response,
                 data: {
@@ -35,6 +38,7 @@ export const tourApi = baseApi.injectEndpoints({
                 }
             })
         }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         createTour: builder.mutation<any, Partial<Tour>>({
             query: (data) => ({
                 url: '/tours',

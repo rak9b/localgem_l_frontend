@@ -122,7 +122,7 @@ export default function GuideDashboard() {
                                             <Star key={i} className="w-3 h-3 fill-current" />
                                         ))}
                                     </div>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">"{review.comment}"</p>
+                                    <p className="text-gray-600 dark:text-gray-300 text-sm">&quot;{review.comment}&quot;</p>
                                 </div>
                             ))}
                         </div>

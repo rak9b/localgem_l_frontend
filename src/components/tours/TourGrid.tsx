@@ -42,7 +42,7 @@ export const TourGrid = ({ tours, isLoading, isError, viewMode, onRetry, onReset
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white">Connecting to Server...</h3>
                 <p className="text-gray-500 dark:text-gray-400 mt-2 max-w-md mx-auto">
-                    We're having trouble reaching the database. <br />
+                    We&apos;re having trouble reaching the database. <br />
                     <span className="text-sm opacity-75">If you are running this locally, please ensure Docker and the Database are started.</span>
                 </p>
                 <Button variant="outline" className="mt-6" onClick={onRetry}>

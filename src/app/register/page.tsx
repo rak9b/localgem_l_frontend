@@ -37,8 +37,9 @@ export default function Register() {
             const result = await registerUser(data).unwrap();
             dispatch(setUser({ user: result.data.user, token: result.data.accessToken }));
             router.push('/dashboard');
-        } catch (err: any) {
-            setError(err?.data?.message || 'Registration failed. Please try again.');
+        } catch (err: unknown) {
+            const error = err as { data?: { message?: string } };
+            setError(error?.data?.message || 'Registration failed. Please try again.');
         }
     };
 

@@ -9,7 +9,7 @@ import { ITourFilters } from '@/types';
 interface ExploreFiltersProps {
     className?: string;
     filters: ITourFilters;
-    setFilters: (filters: any) => void;
+    setFilters: React.Dispatch<React.SetStateAction<ITourFilters>>;
     cities?: string[];
 }
 

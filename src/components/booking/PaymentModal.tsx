@@ -43,8 +43,10 @@ function PaymentForm({ tour, bookingDetails, onClose }: Omit<PaymentModalProps, 
         }
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [guestInfo, setGuestInfo] = useState<any>(null);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onGuestInfoSubmit = (data: any) => {
         setGuestInfo(data);
         setStep('payment');
@@ -97,7 +99,7 @@ function PaymentForm({ tour, bookingDetails, onClose }: Omit<PaymentModalProps, 
                 onClose();
                 window.location.href = '/booking-success';
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('Payment error:', error);
             toast.error('Payment failed. Please try again.');
         } finally {

@@ -9,11 +9,21 @@ import { Input } from '@/components/ui/Input';
 import { motion } from 'framer-motion';
 import io, { Socket } from 'socket.io-client';
 
+interface Message {
+    chatId: number;
+    senderId: string;
+    text: string;
+    timestamp: string;
+    isMine?: boolean;
+}
+
 export default function MessagesPage() {
     const { user } = useSelector((state: RootState) => state.auth);
     const [socket, setSocket] = useState<Socket | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [messages, setMessages] = useState<any[]>([]);
     const [inputMessage, setInputMessage] = useState('');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [selectedChat, setSelectedChat] = useState<any>(null);
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -57,29 +67,41 @@ export default function MessagesPage() {
 
         newSocket.on('connect', () => {
             console.log('Connected to chat server');
-            if (user) {
+            if (user?.id) {
                 newSocket.emit('join', { userId: user.id });
             }
         });
 
-        newSocket.on('message', (message: any) => {
+        newSocket.on('message', (message: Message) => {
             setMessages(prev => [...prev, message]);
-            scrollToBottom();
+            // Use a timeout to ensure DOM update before scrolling
+            setTimeout(scrollToBottom, 0);
         });
 
-        newSocket.on('typing', (data: any) => {
-            if (data.chatId === selectedChat?.id) {
-                setIsTyping(true);
-                setTimeout(() => setIsTyping(false), 3000);
-            }
+        newSocket.on('typing', (data: { chatId: number; userId: string }) => {
+            // Use a functional update for selectedChat to get the latest value
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setSelectedChat((currentSelectedChat: any) => {
+                if (currentSelectedChat && data.chatId === currentSelectedChat.id && data.userId !== user?.id) {
+                    setIsTyping(true);
+                    setTimeout(() => setIsTyping(false), 3000);
+                }
+                return currentSelectedChat; // Return the current state
+            });
         });
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSocket(newSocket);
 
         return () => {
             newSocket.close();
         };
-    }, [user, selectedChat]);
+    }, [user, scrollToBottom]); // Reconnect only if user changes
+
+    // Effect to scroll to bottom when messages change
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, scrollToBottom]);
 
     const sendMessage = (e: React.FormEvent) => {
         e.preventDefault();

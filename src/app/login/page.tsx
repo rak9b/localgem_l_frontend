@@ -36,8 +36,9 @@ export default function Login() {
             const result = await login(data).unwrap();
             dispatch(setUser({ user: result.data.user, token: result.data.accessToken }));
             router.push('/dashboard');
-        } catch (err: any) {
-            setError(err?.data?.message || 'Login failed. Please check your credentials.');
+        } catch (err: unknown) {
+            const error = err as { data?: { message?: string } };
+            setError(error?.data?.message || 'Login failed. Please check your credentials.');
         }
     };
 

@@ -37,6 +37,7 @@ export const ChatBot: React.FC = () => {
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const recognitionRef = useRef<any>(null);
 
     // Initialize with welcome message only on client side
@@ -50,7 +51,7 @@ export const ChatBot: React.FC = () => {
                 console.error("Failed to parse chat history", e);
                 setMessages([{
                     id: '1',
-                    text: "Hello! 👋 I'm your LocalGems assistant. How can I help you today?",
+                    text: "Hello! 👋 I&apos;m your LocalGems assistant. How can I help you today?",
                     sender: 'bot',
                     timestamp: new Date()
                 }]);
@@ -58,7 +59,7 @@ export const ChatBot: React.FC = () => {
         } else {
             setMessages([{
                 id: '1',
-                text: "Hello! 👋 I'm your LocalGems assistant. I can help you find tours, become a guide, or answer questions about bookings. How can I help you today?",
+                text: "Hello! 👋 I&apos;m your LocalGems assistant. I can help you find tours, become a guide, or answer questions about bookings. How can I help you today?",
                 sender: 'bot',
                 timestamp: new Date()
             }]);
@@ -124,7 +125,7 @@ export const ChatBot: React.FC = () => {
 
         } catch (error) {
             console.error("Chat Error:", error);
-            let errorMessage = "I'm having trouble connecting right now. Please try again later.";
+            let errorMessage = "I&apos;m having trouble connecting right now. Please try again later.";
             if (axios.isAxiosError(error) && error.response?.data?.error) {
                 errorMessage = error.response.data.error;
             }
@@ -205,6 +206,7 @@ export const ChatBot: React.FC = () => {
                 setInputValue('');
                 recognitionRef.current.start();
             }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             if (error.name === 'InvalidStateError') {
                 // If already started, just sync the state

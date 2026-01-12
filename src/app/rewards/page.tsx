@@ -39,10 +39,8 @@ export default function Rewards() {
                     >
                         <Gift className="w-10 h-10 text-white" />
                     </motion.div>
-                    <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Invite Friends, Earn Travel Credit</h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Give your friends $25 off their first trip, and you'll get $25 when they book.
-                    </p>
+                    <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Gems Rewards Program</h1>
+                    <p className="text-xl text-gray-600 dark:text-gray-300">Earn points for every adventure and unlock exclusive traveler&apos;s perks.</p>
                 </div>
 
                 {/* Code Box */}
@@ -85,8 +83,8 @@ export default function Rewards() {
                         return (
                             <div key={idx} className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 flex items-center gap-4">
                                 <div className={`w-12 h-12 ${stat.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' :
-                                        stat.color === 'green' ? 'bg-green-100 dark:bg-green-900/30 text-green-600' :
-                                            'bg-rose-100 dark:bg-rose-900/30 text-rose-600'
+                                    stat.color === 'green' ? 'bg-green-100 dark:bg-green-900/30 text-green-600' :
+                                        'bg-rose-100 dark:bg-rose-900/30 text-rose-600'
                                     } rounded-xl flex items-center justify-center`}>
                                     <Icon className="w-6 h-6" />
                                 </div>

@@ -170,7 +170,7 @@ export default function ProfilePage() {
                                             placeholder="yourwebsite.com"
                                         />
                                     ) : (
-                                        <a href={`https://${formData.website}`} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline">
+                                        <a href={`https://${formData.website}`} target="_blank" rel="noopener noreferrer" className={"text-rose-600 hover:underline"}>
                                             {formData.website}
                                         </a>
                                     )}

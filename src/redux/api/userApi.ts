@@ -22,6 +22,7 @@ export const userApi = baseApi.injectEndpoints({
                 totalTours: number;
                 totalBookings: number;
                 totalRevenue: number;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 recentActivities: any[] // We'll keep any for now unless we have a specific Activity type
             }
         }, void>({
